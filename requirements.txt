@@ -1,0 +1,7 @@
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+
+# Dataset Link: https://www.kaggle.com/datasets/adilshamim8/cost-of-international-education?resource=download
