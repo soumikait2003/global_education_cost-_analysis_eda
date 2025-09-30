@@ -59,20 +59,45 @@ Studying abroad requires careful financial planning. Students, universities, and
 
 ---
 
-## Project Structure  
+---
 
-global_education_cost_analysis_eda/
-│
-├── README.md
-├── requirements.txt
-│
-├── data/                        # Dataset files
-│   └── International_Education_Costs.csv
-│
-├── notebooks/                   # Jupyter notebooks
-│   └── Global_Education_Cost_Analysis.ipynb
-│
-└── images/                      # Visualizations & charts
-    ├── tuition_distribution.png
-    ├── correlation_heatmap.png
-    └── sunburst_chart.png
+## Data Cleaning & Preparation  
+
+- Identified **103 rows with Tuition = 0** → replaced with **country average tuition** (or global average if missing).  
+- Created **Tuition Category** feature:  
+  - Low, Medium, High, Very High, Extremely High  
+- Handled outliers in living cost, visa fee, and rent.  
+- Checked for duplicates and missing values.  
+
+---
+
+## Exploratory Data Analysis (EDA)  
+
+**Key Observations:**  
+- Tuition distribution is **right-skewed** with many mid-range programs and a few very expensive ones.  
+- Rent strongly correlates with both tuition and living cost index.  
+- Exchange rate variation shows weak correlation with education costs.  
+- USA, UK, and Canada appear frequently as high-cost countries.  
+- Specialized programs (Data Science, AI, MBA) tend to be costlier than general programs.  
+
+---
+
+## Research Questions & Key Findings  
+
+1. Which countries and cities have the **highest tuition and living costs**?  
+2. Are **PhD and Master’s programs** more expensive than Bachelor’s?  
+3. Which programs (e.g. STEM vs non-STEM) show higher cost categories?  
+4. What is the correlation between **living cost index, rent, and tuition**?  
+5. How do **outliers** (very high/low tuition or rent) impact overall averages?  
+
+---
+
+
+---
+
+## How to Run This Project  
+
+1. Clone the repository:  
+```bash
+git clone https://github.com/soumikait2003/global_education_cost-_analysis_eda.git
+
