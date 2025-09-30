@@ -61,3 +61,18 @@ Studying abroad requires careful financial planning. Students, universities, and
 
 ## Project Structure  
 
+global_education_cost_analysis_eda/
+│
+├── README.md
+├── requirements.txt
+│
+├── data/                        # Dataset files
+│   └── International_Education_Costs.csv
+│
+├── notebooks/                   # Jupyter notebooks
+│   └── Global_Education_Cost_Analysis.ipynb
+│
+└── images/                      # Visualizations & charts
+    ├── tuition_distribution.png
+    ├── correlation_heatmap.png
+    └── sunburst_chart.png
