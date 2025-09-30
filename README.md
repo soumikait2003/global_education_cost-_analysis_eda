@@ -1,85 +1,63 @@
-# 🌍 Cost of International Education Analysis
+# 🎓 Global Education Cost Analysis – EDA  
 
-## 🎯 Project Overview
-
-This project provides a comprehensive Exploratory Data Analysis (EDA) of the **International Education Costs** dataset. The primary goal is to analyze and visualize the various financial components of studying abroad, including tuition fees, living costs, visa fees, and insurance, across different countries, universities, and program levels.
-
-The analysis focuses on identifying key financial drivers and providing insights into the most and least expensive options for international students.
+_Analyzing tuition, living costs, visa fees, and insurance across top countries and universities using Python and visualization libraries._  
 
 ---
 
-## 📊 Dataset Summary
-
-The dataset, titled `International_Education_Costs.csv`, contains **907** records and **12** columns detailing the costs associated with international education.
-
-| Column | Description | Data Type | Key Insight |
-| :--- | :--- | :--- | :--- |
-| **Country, City, University** | Geographical and institutional details. | `Object` | Used for geographic distribution and institutional analysis. |
-| **Program, Level** | Academic details (e.g., Master, Bachelor, Data Science). | `Object` | Used to analyze cost differences by academic field and degree. |
-| **Duration_Years** | Length of the program in years. | `float64` | Correlates with the total cost of study. |
-| **Tuition_USD** | Annual tuition fee in US dollars. | `int64` | **Key target variable for cleaning and analysis.** |
-| **Living_Cost_Index** | Relative living cost index. | `float64` | Used to gauge a city's general expense level. |
-| **Rent_USD** | Estimated annual rent in US dollars. | `int64` | Major component of total living expenses. |
-| **Visa_Fee_USD** | Cost of the student visa. | `int64` | Standard one-time or recurring fee. |
-| **Insurance_USD** | Mandatory health/study insurance cost. | `int64` | Standard annual fee. |
-| **Exchange_Rate** | Local currency exchange rate to USD. | `float64` | Shows currency volatility/strength. |
+## 📌 Table of Contents  
+- <a href="#overview">Overview</a>  
+- <a href="#business-problem">Business Problem</a>  
+- <a href="#dataset">Dataset</a>  
+- <a href="#tools--technologies">Tools & Technologies</a>  
+- <a href="#project-structure">Project Structure</a>  
+- <a href="#data-cleaning--preparation">Data Cleaning & Preparation</a>  
+- <a href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>  
+- <a href="#research-questions--key-findings">Research Questions & Key Findings</a>  
+- <a href="#visualizations">Visualizations</a>  
+- <a href="#how-to-run-this-project">How to Run This Project</a>  
+- <a href="#final-recommendations">Final Recommendations</a>  
+- <a href="#author--contact">Author & Contact</a>  
 
 ---
 
-## 🛠️ Methodology and Data Preprocessing
+## Overview  
 
-### 1. Data Cleaning
-* **Tuition_USD Zero-Value Imputation:** Identified **103 rows** where `Tuition_USD` was recorded as `0`.
-    * These zeros were replaced with the **country-wise average tuition** to maintain country-specific cost structure.
-    * Any remaining zero/NaN values (where the country average was also zero) were filled with the **global average tuition**.
-    * The minimum `Tuition_USD` value after cleaning is now **$400**.
-* **Data Consistency:** Checked for missing values (`Study.isnull()`) and duplicates (`Study.duplicated()`), finding **none** in the original data structure.
-
-### 2. Feature Engineering
-* A new categorical column, **`Tuition_Category`**, was created by binning `Tuition_USD` into five groups: `Low`, `Medium`, `High`, `Very High`, and `Extremely High`. This aids in Bivariate Analysis.
+This project explores the **global costs of education abroad** by analyzing tuition fees, rent, living expenses, visa, and insurance costs. The aim is to identify affordability trends, categorize tuition levels, and uncover geographic or academic factors that drive expenses for students planning to study overseas.  
 
 ---
 
-## 🔍 Key Findings and Analysis Highlights
+## Business Problem  
 
-### 1. Univariate Analysis
-* **Tuition_USD:** The distribution is heavily **right-skewed**, indicating that the majority of programs fall into the lower-to-medium tuition range, with a few expensive outliers.
-* **Outliers:** Outliers were found in `Tuition_USD`, `Living_Cost_Index`, `Visa_Fee_USD`, and `Exchange_Rate`, confirming the diverse and disparate costs associated with international study.
+Studying abroad requires careful financial planning. Students, universities, and policymakers face challenges in:  
 
-### 2. Bivariate and Multivariate Analysis
-* **Correlation Heatmap (Plotly `px.imshow`):** This revealed strong positive correlations between:
-    * `Tuition_USD` and `Rent_USD`
-    * `Living_Cost_Index` and `Rent_USD`
-    * *(Note: The `Exchange_Rate` showed little direct linear correlation with costs, suggesting its variation is independent of program price structure.)*
-* **Cost by Level (`px.funnel`):**
-    * **PhD** and **Master** programs generally have the highest average tuition fees, followed by **Bachelor** and **Diploma**.
-* **Cost by Program (`px.funnel`):**
-    * Programs like **Data Science** and **Artificial Intelligence** show some of the highest average tuition fees, reflecting high-demand, specialized fields.
-* **Geographical Distribution:**
-    * **USA, UK, and Canada** are the most frequently represented countries, aligning with their status as top international study destinations.
-    * Sunburst charts for countries (e.g., India) and programs (e.g., Data Analytics) visually decompose the total cost by Level, City, and University.
+- Understanding country-wise and city-wise cost variations  
+- Identifying programs with high tuition and living expenses  
+- Categorizing affordability into clear tuition bands  
+- Highlighting outliers such as zero/invalid tuition values  
+- Correlating tuition with living costs, rent, and visa expenses  
 
 ---
 
-## 🖥️ How to View Interactive Visualizations
+## Dataset  
 
-**NOTE:** Because GitHub does not render interactive Plotly graphs, the visualizations generated by `plotly.express as px` (Sunburst, Funnel, Scatter plots, and the Correlation Heatmap) will **not** be visible directly on this page.
-
-**To view all the interactive plots properly:**
-
-1.  **Copy the URL** of the GitHub notebook (`.ipynb` file).
-2.  **Paste the URL** into **[NBViewer](https://nbviewer.org/)** and load the notebook.
-
-This will provide a dedicated environment to render the interactive charts, allowing you to zoom, hover, and explore the data in detail.
+- Source: Custom CSV dataset containing global education costs  
+- Records: **907**  
+- Features include:  
+  - **Country, City, University, Program, Level**  
+  - **Duration (Years)**  
+  - **Tuition (USD), Living Cost Index, Rent (USD)**  
+  - **Visa Fee, Insurance, Exchange Rate**  
 
 ---
 
-## 📚 Libraries Used
+## Tools & Technologies  
 
-| Library | Purpose |
-| :--- | :--- |
-| **`pandas`** | Data manipulation and cleaning. |
-| **`numpy`** | Numerical operations. |
-| **`matplotlib.pyplot`** | Basic static plotting (Histograms, Boxplots). |
-| **`seaborn`** | Statistical visualization (Histograms, Countplots). |
-| **`plotly.express`** | **Interactive** visualizations (Heatmaps, Funnel, Sunburst, Scatter). |
+- **Python** (Pandas, NumPy)  
+- **Visualization** (Matplotlib, Seaborn, Plotly)  
+- **Jupyter Notebook / Google Colab**  
+- **GitHub** for version control  
+
+---
+
+## Project Structure  
+
